@@ -156,6 +156,14 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 
 			$item_output = $args->before;
 			$item_output .= '<a'. $attributes .'>';
+			
+			//CP-
+			if ($depth == 1) {
+				$item_output .= '<div class="menu-thumb">';
+				$item_output .= get_the_post_thumbnail( get_post_meta( $item->ID, '_menu_item_object_id', true ),  'thumb-menu' );
+				$item_output .= '</div>';
+			}
+			//CP--
 
 			if ( $settings['hide_text'] == 'true' && $depth == 0 ) {
 				/** This filter is documented in wp-includes/post-template.php */
@@ -164,6 +172,11 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 			}
 
 			$item_output .= '</a>';
+			
+			//CP-
+			$item_output .= !empty($item->description) ? '<span class="description">'.$item->description.'</span>' : '';
+			//CP--
+			
 			$item_output .= $args->after;
 
 		}
