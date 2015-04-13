@@ -324,6 +324,10 @@ final class Mega_Menu {
 					}
 
 					$cols = 0;
+					
+					//CP-
+					$widgets = array();
+					//CP--
 
 					foreach ( $panel_widgets as $widget ) {
 
@@ -352,8 +356,15 @@ final class Mega_Menu {
 							$cols = $widget['mega_columns'];
 						}
 
-						$items[] = (object) $menu_item;
+						//CP-
+						//$items[] = (object) $menu_item;
+						$widgets[] = (object) $menu_item;
+						//CP--
 					}
+					
+					//CP-
+					$items = array_merge($widgets, $items);
+					//CP--
 				}
 			}
 		}
